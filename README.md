@@ -19,3 +19,12 @@ With structured data handling and reusable preprocessing code provided upfront, 
 to deliver an engaging portal for accessing ETD metadata and full-texts within this robust digital library
 ecosystem. Detailed milestones will guide the development, with the ultimate goal of enabling seamless
 exploration of the integrated collection.
+
+Tech Stack used:
+Java Spring Boot with MVC Architecture
+Elasticsearch
+Kibana for data visualization
+MySQL
+OpenAI API integration for chatbot 
+ReCAPTCHA v2 for multi factor authentication
+Wikifier API integration
