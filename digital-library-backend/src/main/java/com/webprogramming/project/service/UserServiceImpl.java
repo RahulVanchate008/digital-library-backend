@@ -370,6 +370,33 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public String chatbot(String question) throws IOException, InterruptedException {
+		final String OPENAI_API_KEY = "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";
+		final String API_URL = "https://api.openai.com/v1/engines/text-davinci-003/completions";
+
+		// Make API request
+		Map<String, Object> requestBody = Map.of("prompt", question, "max_tokens", 100);
+
+		HttpClient httpClient = HttpClient.newHttpClient();
+		HttpRequest request = HttpRequest.newBuilder().uri(URI.create(API_URL))
+				.header("Content-Type", "application/json").header("Authorization", "Bearer " + OPENAI_API_KEY)
+				.POST(HttpRequest.BodyPublishers.ofString(JsonUtils.toJson(requestBody))).build();
+
+		HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+		// Process the response
+		if (response.statusCode() == 200) {
+			String modelResponse = response.body();
+			System.out.println("Chatbot Response: " + modelResponse);
+			return modelResponse;
+		} else {
+			System.err.println("Error: " + response.statusCode());
+			System.err.println(response.body());
+			return "Error in Chatbot response";
+		}
+	}
+
+	@Override
 	public String searchUsingParameters(String key, String searchTerm, int range) {
 		SearchRequest searchRequest = new SearchRequest("etd-500");
 		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
