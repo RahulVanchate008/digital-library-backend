@@ -1,5 +1,6 @@
 package com.webprogramming.project.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webprogramming.project.model.EtdDto;
 import com.webprogramming.project.model.User;
 import com.webprogramming.project.service.UserService;
 
@@ -50,6 +52,39 @@ public class UserController {
 	@GetMapping("/viewProfile")
 	public List<User> viewProfile(@RequestParam("email") String email) {
 		return userService.viewProfile(email);
+	}
+
+	@PostMapping("/indexDocuments")
+	public String indexDocuments() {
+		return userService.indexDocuments();
+	}
+
+	@GetMapping("/searchIndex")
+	public String searchIndex(@RequestParam("searchTerm") String searchTerm) {
+		// TODO Spell Correct
+		return userService.searchIndex(searchTerm);
+	}
+
+	@GetMapping("/getMetaData")
+	public String getMetaData(@RequestParam("etdId") String etdId) {
+		return userService.getMetaData(etdId);
+	}
+
+	@PostMapping("/uploadDocument")
+	public String uploadDocument(@RequestBody EtdDto etdDto) {
+		return userService.uploadDocument(etdDto);
+	}
+
+	@PostMapping("/chatbot")
+	public String chatbot(@RequestBody String message) throws IOException, InterruptedException {
+		return userService.chatbot(message);
+	}
+
+	@GetMapping("/searchUsingParameters")
+	public String search(@RequestParam("key") String key, @RequestParam("query") String query,
+			@RequestParam("range") int range) {
+		// Replace the following line with your actual service method
+		return userService.searchUsingParameters(key, query, range);
 	}
 
 }
