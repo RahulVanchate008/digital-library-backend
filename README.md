@@ -17,8 +17,7 @@ building these components out in phases, working up to a polished platform that 
 learning from academic works in the form of ETDs an intuitive process.
 With structured data handling and reusable preprocessing code provided upfront, we are well-positioned
 to deliver an engaging portal for accessing ETD metadata and full-texts within this robust digital library
-ecosystem. Detailed milestones will guide the development, with the ultimate goal of enabling seamless
-exploration of the integrated collection.
+ecosystem.
 
 Tech Stack used:
 Java Spring Boot with MVC Architecture
